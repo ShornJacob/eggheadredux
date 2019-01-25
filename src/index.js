@@ -12,4 +12,12 @@ import {store} from './store'
 // // Learn more about service workers: http://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
-console.log(store.getState())
+const render = () => document.body.innerText = store.getState()
+
+render()
+
+store.subscribe(render)
+
+document.addEventListener('click', () => {
+    store.dispatch({type : 'INCREMENT'})
+})
