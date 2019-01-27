@@ -42,12 +42,31 @@ store.subscribe(render)
 //     store.dispatch({type : 'INCREMENT'})
 // })
 
-const aList = [1,2,3]
-Object.freeze(aList)
+// const aList = [1,2,3]
+// Object.freeze(aList)
 
-const incrementAtIndex = (list,index) => [...list.slice(0,index),list[index]+1,...list.slice(index+1)]
+// const incrementAtIndex = (list,index) => [...list.slice(0,index),list[index]+1,...list.slice(index+1)]
 
 
-const newList = incrementAtIndex(aList,1)
+// const newList = incrementAtIndex(aList,1)
 
-console.log(newList)
+// console.log(newList)
+
+const toggleTodo = (todo) => {
+    return {
+        ...todo,
+        completed : !todo.completed
+    }
+
+}
+const aTodo = {
+    id: 0,
+    text: "aText",
+    completed : true
+}
+
+Object.freeze(aTodo)
+
+const flipped = toggleTodo(aTodo)
+
+console.log(flipped)
