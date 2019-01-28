@@ -1,21 +1,51 @@
-import {counter} from './index'
+import {todosReducer} from './index.js'
 
-// test('counter', ()=> {
-//    expect( counter(0, {type: 'INCREMENT'}) ).toBe(0)
-// })
+test('testing Todos', ()=> {
+    const action = {
+       type : 'ADD_TODO',
+       payload : {
+          id : 101,
+          text : 'A text'
+       }
+    }
 
-test('test increment', ()=> {
-    expect( counter(1, {type: 'INCREMENT'}) ).toBe(2)
+    const stateAfter = [
+       {
+         id : 101,
+         text : 'A text',
+         completed : false
+       }
+    ]
+    expect( todosReducer(undefined,action)).toMatchObject(stateAfter) 
  })
 
- test('test decrement', ()=> {
-    expect( counter(2, {type: 'DECREMENT'}) ).toBe(1)
- })
 
- test('test no initialstate', ()=> {
-    expect( counter(undefined, {type: 'DECREMENT'}) ).toBe(-1)
- })
+ test('testing Toggle Todos', ()=> {
 
- test('test unknow', ()=> {
-    expect( counter(undefined, {type: 'UNKNOWN'}) ).toBe(0)
- })
+   const stateBefore = [
+      {
+         id: 101,
+         text: 'LEarn Redux',
+         completed: false
+      }
+   ]
+
+   const action = {
+      type : 'TOGGLE_TODO',
+      payload : {
+         id : 101
+      }
+   }
+
+   const stateAfter = [
+      {
+        id : 101,
+        text : 'LEarn Redux',
+        completed : true
+      }
+   ]
+   expect( todosReducer(stateBefore,action)).toMatchObject(stateAfter) 
+
+})
+
+ 

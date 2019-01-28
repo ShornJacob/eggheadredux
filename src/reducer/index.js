@@ -1,11 +1,32 @@
-//const counter = (state,action) => state
-
-const counter = (state = 0,action) => {
+const todosReducer = (state = [], action) => {
     switch(action.type) {
-        case 'INCREMENT' : return state + 1
-        case 'DECREMENT' : return state - 1
-        default : return state
-    }
-}
+        case 'ADD_TODO' :
+        return [
+            ...state,
+            {
+                id : action.payload.id,
+                text : action.payload.text,
+                completed : false
+            }
+        ]
 
-export {counter}
+        case 'TOGGLE_TODO' : 
+
+        //The map() method creates a new array with the results of calling a provided function on every element in the calling array.
+            return state.map( todo => {
+                if (todo.id !== action.payload.id) {
+                    return todo
+                }
+
+                return {
+                    ...todo,
+                    completed : !todo.completed
+                }
+            })
+        default :
+         return state
+    }
+   }
+
+export {todosReducer}
+   
