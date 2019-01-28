@@ -1,3 +1,30 @@
+//Reducer Composition Pattern
+//In todo, the state received is each todo of the todosREducer, called when action is ToGGLE_TODO
+
+///Recuer compoaostion, different reducer specify ho diferent parts of state can change
+//Main reduce calls another reducers, javascript function calls.
+
+//state is a ToDo Object
+const todoReducer = (state,action) => {
+    switch(action.type) {
+        case 'TOGGLE_TODO' :
+         if( state.id!== action.payload.id) {
+             return state;
+         }
+
+         return {
+             ...state,
+             completed: !state.completed
+         }
+
+         default:
+          return state
+    }
+}
+
+
+
+//state is aray of objects
 const todosReducer = (state = [], action) => {
     switch(action.type) {
         case 'ADD_TODO' :
@@ -12,17 +39,8 @@ const todosReducer = (state = [], action) => {
 
         case 'TOGGLE_TODO' : 
 
-        //The map() method creates a new array with the results of calling a provided function on every element in the calling array.
-            return state.map( todo => {
-                if (todo.id !== action.payload.id) {
-                    return todo
-                }
+            return state.map( todo => todoReducer(todo,action) )
 
-                return {
-                    ...todo,
-                    completed : !todo.completed
-                }
-            })
         default :
          return state
     }
