@@ -1,10 +1,5 @@
-//Reducer Composition Pattern
-//In todo, the state received is each todo of the todosREducer, called when action is ToGGLE_TODO
+import {combineReducers} from 'redux'
 
-///Recuer compoaostion, different reducer specify ho diferent parts of state can change
-//Main reduce calls another reducers, javascript function calls.
-
-//state is a ToDo Object
 const todoReducer = (state,action) => {
     switch(action.type) {
         case 'TOGGLE_TODO' :
@@ -21,7 +16,6 @@ const todoReducer = (state,action) => {
           return state
     }
 }
-
 
 
 //state is aray of objects
@@ -56,15 +50,42 @@ const todosReducer = (state = [], action) => {
    }
 
 //when an action comes in ,call a reducer with a part of the state that they manage and the action
-const todoAppReducer = ( state= {}, action) => {
-    return {
-        todos : todos(
-            state.todos,
-            action
-        ),
-        visibilityFilter : visibilityFilter(state.visibilityFilter,action)
-    }
-}
+// const todoAppReducer = ( state= {}, action) => {
+//     return {
+//         todos : todos(
+//             state.todos,
+//             action
+//         ),
+//         visibilityFilter : visibilityFilter(state.visibilityFilter,action)
+//     }
+// }
+
+//the keys of the object, corresposinding to the fields of the state object, values are reducer funtions
+// const todoAppReducer = combineReducers({
+//     todos: todosReducer,
+//     visibilityFilter: visibilityFilter
+// })
+
+
+//object literal short hand notaion
+//http://www.benmvp.com/learning-es6-enhanced-object-literals/
+
+// function getCar(make, model, value) {
+// 	return {
+// 		// with property value shorthand
+// 		// syntax, you can omit the property
+// 		// value if key matches variable
+// 		// name
+// 		make,  // same as make: make
+// 		model, // same as model: model
+//         value
+//     }
+
+
+const todoAppReducer = combineReducers({
+  todosReducer,
+  visibilityFilter
+ })
 
 export {todosReducer}
    
