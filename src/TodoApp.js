@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 
+import {store} from './store.js'
 
-//let nextTodoId = 0
+let nextTodoId = 200
 
 class TodoApp extends Component {
   render() {
     return (
       <div>
-        {/* <button onClick= { () => {
+        <button onClick= { () => {
           store.dispatch ({ 
             type : 'ADD_TODO',
-            text : 'Test',
-            id : nextTodoId
+            payload : {
+              text : 'Added',
+              id : nextTodoId++
+            }
+           
           })
-        }}> Add Todo </button> */}
+        }}> Add Todo </button>
         Todo
         <ul>
           {console.log(this.props)}
