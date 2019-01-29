@@ -17,3 +17,16 @@ const render = () => {
 render()
 
 store.subscribe(render)
+
+/TodoApp.js
+
+store is now imported inot the file and dispatch is used in component
+ <button onClick= { () => {
+          store.dispatch ({ 
+            type : 'ADD_TODO',
+            payload : {
+              text : 'Added',
+              id : nextTodoId++
+            }
+           
+          })
