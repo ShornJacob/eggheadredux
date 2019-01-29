@@ -19,7 +19,7 @@ const todoReducer = (state,action) => {
 
 
 //state is aray of objects
-const todosReducer = (state = [], action) => {
+const todosReducer = (state = [{id:101,text:"Hello",completed:false}], action) => {
     switch(action.type) {
         case 'ADD_TODO' :
         return [
@@ -87,5 +87,5 @@ const todoAppReducer = combineReducers({
   visibilityFilter
  })
 
-export {todosReducer}
+export {todoAppReducer}
    

@@ -1,6 +1,6 @@
 import {createStore} from 'redux'
-import {counter} from './reducer/index'
+import {todoAppReducer} from './reducer/index'
 
-const store = createStore(counter)
+const store = createStore(todoAppReducer)
 
 export {store}
