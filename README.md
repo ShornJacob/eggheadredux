@@ -1,10 +1,19 @@
-Reducer test
+Made a todoapp component
 
-Adds a todo to initialState
+Doesnt use store Provider
 
-index.js
-index.test.js
+But store subscribes to a render method
 
-Added toggle todo reducer and test
+render returns a functon
 
-Added reducer composition for TOGGLE_TODO
+//index.js
+const render = () => {
+  ReactDOM.render(
+      <TodoApp todos={store.getState().todosReducer} />,
+      document.getElementById('root')
+  )
+}
+
+render()
+
+store.subscribe(render)
