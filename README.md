@@ -30,3 +30,6 @@ store is now imported inot the file and dispatch is used in component
             }
            
           })
+
+https://reactjs.org/docs/refs-and-the-dom.html
+When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref.
