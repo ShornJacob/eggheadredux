@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 
 import {store} from './store.js'
 
-const FilterLink = ({filter,children}) => {
+const FilterLink = ({filter,currentFilter,children}) => {
+
+  //return something else if a condition is matched
+  if (filter === currentFilter) {
+    return <span>{children}</span>
+  }
+
   return (
     <button onClick= { e => {
       e.preventDefault()
@@ -38,6 +44,8 @@ class TodoApp extends Component {
   render() {
 
     //functions needs to be called in render before return
+
+    const {todos,visibilityFilter} = this.props
 
     const visibleTodos = getVisibleTodos(this.props.todos,  this.props.visibilityFilter  )
     return (
@@ -79,9 +87,9 @@ class TodoApp extends Component {
           Show:
 
           {/* <Anything inside the <></>JSX tag gets passed into the FancyBorder component as a children prop */}
-          <FilterLink filter="SHOW_ALL">All</FilterLink><br/>
-          <FilterLink filter="SHOW_ACTIVE">Active</FilterLink>
-          <FilterLink filter="SHOW_COMPLETED">Show Completed</FilterLink>
+          <FilterLink filter="SHOW_ALL" currentFilter={visibilityFilter}>All</FilterLink><br/>
+          <FilterLink filter="SHOW_ACTIVE" currentFilter={visibilityFilter}>Active</FilterLink>
+          <FilterLink filter="SHOW_COMPLETED" currentFilter={visibilityFilter}>Show Completed</FilterLink>
         </p>
       </div>
     );
