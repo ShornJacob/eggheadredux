@@ -7,7 +7,8 @@ import {TodoApp} from './TodoApp'
 
 const render = () => {
   ReactDOM.render(
-      <TodoApp todos={store.getState().todosReducer} />,
+    //spread of state field, every state field is passed as a prop
+      <TodoApp {...store.getState()} />,
       document.getElementById('root')
   )
 }

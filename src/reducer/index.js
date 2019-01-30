@@ -83,7 +83,7 @@ const todosReducer = (state = [{id:101,text:"Hello",completed:false}], action) =
 
 
 const todoAppReducer = combineReducers({
-  todosReducer,
+  todos : todosReducer,
   visibilityFilter
  })
 
