@@ -11,7 +11,7 @@ const render = () => {
   ReactDOM.render(
     //https://zhenyong.github.io/react/docs/jsx-spread.html
     //JSX Spread Attribute
-      <TodoApp {...store.getState()} />,
+      <TodoApp />,
       document.getElementById('root')
   )
 }

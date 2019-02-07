@@ -1,35 +1,31 @@
-Made a todoapp component
+index.js
 
-Doesnt use store Provider
 
-But store subscribes to a render method
-
-render returns a functon
-
-//index.js
 const render = () => {
+
+
   ReactDOM.render(
-      <TodoApp todos={store.getState().todosReducer} />,
+    //https://zhenyong.github.io/react/docs/jsx-spread.html
+    //JSX Spread Attribute
+      <TodoApp />,
       document.getElementById('root')
   )
 }
 
-render()
+Todo takes no props
 
-store.subscribe(render)
+TodoApp
 
-/TodoApp.js
+ return (
+    <div>
+      <AddTodo />
 
-store is now imported inot the file and dispatch is used in component
- <button onClick= { () => {
-          store.dispatch ({ 
-            type : 'ADD_TODO',
-            payload : {
-              text : 'Added',
-              id : nextTodoId++
-            }
-           
-          })
+      <VisibleTodoList
+      />
 
-https://reactjs.org/docs/refs-and-the-dom.html
-When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref.
+      <Footer  />
+
+    </div>
+  )
+
+these three coponnets dont take props. they call store on there own
