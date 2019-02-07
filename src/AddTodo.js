@@ -1,12 +1,11 @@
 import React from 'react'
-import { store } from './store';
 
 //https://reactjs.org/docs/refs-and-the-dom.html#refs-and-function-components
 
 //decalring in inside the compaonent will cause each cokponent to have different variables holdong the same value
 let nextTodoId = 0
 
-export default ({onAddClick}) => {
+export default ({store}) => {
 
     let textInput = React.createRef()
 

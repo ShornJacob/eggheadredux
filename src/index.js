@@ -1,21 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import {store} from './store.js'
 import TodoApp from './TodoApp'
+import {createStore} from 'redux'
+import {todoAppReducer} from './reducer/index'
 
 
 const render = () => {
 
 
   ReactDOM.render(
-    //https://zhenyong.github.io/react/docs/jsx-spread.html
-    //JSX Spread Attribute
-      <TodoApp />,
+    //makinf store completely injectable as a prop rtaher than a top level variable
+      <TodoApp store={createStore(todoAppReducer)} />,
       document.getElementById('root')
   )
 }
 
 render()
 
-store.subscribe(render)
