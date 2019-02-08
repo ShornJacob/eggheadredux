@@ -5,20 +5,17 @@ import VisibleTodoList from './VisibleTodoList'
 
 
 
-export default ({ store }) => {
+export default () => {
   //  console.log(todos)
   //  console.log(visibilityFilter)
 
   return (
     <div>
-      <AddTodo store={store} 
-      />
+      <AddTodo       />
 
-      <VisibleTodoList store={store}
-      />
+      <VisibleTodoList       />
 
-      <Footer  store={store}
-      />
+      <Footer        />
 
     </div>
   )

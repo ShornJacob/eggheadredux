@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Link from './Link'
-
+import StoreContext from './StoreContext'
 
 //A container component. A componnet that calls store
 //The container componnet returns a presenational component Link
@@ -9,7 +9,7 @@ import Link from './Link'
 
 export default class FilterLink extends Component {
 
-  
+   static contextType = StoreContext
   // console.log(children)
   //console.log(onClick)
       //return something else if a condition is matched
@@ -18,7 +18,7 @@ export default class FilterLink extends Component {
         //https://reactjs.org/docs/react-component.html#forceupdate 
         //If your render() method depends on some other data, you can tell React that the component needs re-rendering by calling forceUPdate
         //subscribes returns handle to unsubsribe
-        const {store } = this.props
+        const store = this.context
         this.unsubscribe = store.subscribe( ()=> this.forceUpdate()  )
       }
       
@@ -30,7 +30,7 @@ export default class FilterLink extends Component {
       render() {
 
         const props = this.props
-        const {store } = this.props
+        const store = this.context
         const state = store.getState()
 
         //console.log(props.filter)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TodoList from './TodoList'
+import StoreContext from './StoreContext'
 
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
@@ -19,10 +20,11 @@ export default class VisibleTodoList extends Component {
     //cant decalre a const varaible outside
     //JS cant have fields. It is prototype base
    
+    static contextType = StoreContext;
 
     componentDidMount() {
-        //destructure from props
-        const {store } = this.props;
+  
+        const store  = this.context
 
         this.unsubscribe = store.subscribe( ()=> this.forceUpdate()  )
       }
@@ -33,7 +35,7 @@ export default class VisibleTodoList extends Component {
 
   render() {
       
-    const {store } = this.props;
+    const store  = this.context
     const state = store.getState();
 
     return (
