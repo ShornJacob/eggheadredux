@@ -1,27 +1,24 @@
 import React, { Component } from 'react'
-import StoreContext from './StoreContext'
-
-//https://reactjs.org/docs/context.html#when-to-use-context
+import { ReactReduxContext } from 'react-redux'
 
 
-
-//https://reactjs.org/docs/refs-and-the-dom.html#refs-and-function-components
-
-//decalring in inside the compaonent will cause each cokponent to have different variables holdong the same value
 let nextTodoId = 0
 
 export default class AddTodo extends Component {
 
-    static contextType = StoreContext;
 
+    static contextType =  ReactReduxContext;
 
     render() {
 
+        const store  = this.context.store
+
         let textInput = React.createRef()
 
-        const store = this.context
+
         return (
             <div>
+               
                 <input ref={textInput} />
 
                 <button onClick={() => {

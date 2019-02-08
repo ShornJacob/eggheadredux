@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TodoList from './TodoList'
-import StoreContext from './StoreContext'
+import { ReactReduxContext } from 'react-redux'
+
 
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
@@ -17,14 +18,12 @@ const getVisibleTodos = (todos, filter) => {
   
 export default class VisibleTodoList extends Component {
 
-    //cant decalre a const varaible outside
-    //JS cant have fields. It is prototype base
-   
-    static contextType = StoreContext;
+  static contextType =  ReactReduxContext;
 
     componentDidMount() {
   
-        const store  = this.context
+
+        const store  = this.context.store
 
         this.unsubscribe = store.subscribe( ()=> this.forceUpdate()  )
       }
@@ -35,9 +34,11 @@ export default class VisibleTodoList extends Component {
 
   render() {
       
-    const store  = this.context
-    const state = store.getState();
+    const store  = this.context.store
 
+    //console.log(store)
+    const state = store.getState();
+    //console.log(state)
     return (
       <div>
         <TodoList todos={getVisibleTodos(state.todos,state.visibilityFilter)}

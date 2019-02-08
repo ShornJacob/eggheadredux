@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import TodoApp from './TodoApp'
 import {createStore} from 'redux'
 import {todoAppReducer} from './reducer/index'
-import StoreContext from './StoreContext'
+import { Provider } from 'react-redux'
 
 
 
@@ -11,10 +11,10 @@ const render = () => {
 
 
   ReactDOM.render(
-    //makinf store completely injectable as a prop rtaher than a top level variable
-      <StoreContext.Provider value={createStore(todoAppReducer)}>
+    //making store completely injectable as a prop rtaher than a top level variable
+      <Provider store={createStore(todoAppReducer)}>
       <TodoApp />
-      </StoreContext.Provider>,
+      </Provider>,
       document.getElementById('root')
   )
 }
