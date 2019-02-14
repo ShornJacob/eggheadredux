@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
 import TodoList from './TodoList'
-import { ReactReduxContext } from 'react-redux'
+import { connect } from 'react-redux'
 
+//VisibletodoList is a container component for TodoList
 
 const getVisibleTodos = (todos, filter) => {
     switch (filter) {
@@ -16,35 +16,21 @@ const getVisibleTodos = (todos, filter) => {
     }
   }
   
-export default class VisibleTodoList extends Component {
 
-  static contextType =  ReactReduxContext;
-
-    componentDidMount() {
-  
-
-        const store  = this.context.store
-
-        this.unsubscribe = store.subscribe( ()=> this.forceUpdate()  )
-      }
-      
-      componentWillUnmount() {
-        this.unsubscribe()
-      }
-
-  render() {
-      
-    const store  = this.context.store
-
-    //console.log(store)
-    const state = store.getState();
-    //console.log(state)
-    return (
-      <div>
-        <TodoList todos={getVisibleTodos(state.todos,state.visibilityFilter)}
-                  onTodoClick= { id => store.dispatch({type : 'TOGGLE_TODO', payload : { id }})}
-                  />
-      </div>
-    )
+const mapStateToProps = (state) => {
+  return {
+    todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 }
+
+const mapDispatchtoProps = (dispatch) => {
+  return {
+    onTodoClick : (id) => dispatch({type : 'TOGGLE_TODO', payload : { id } })   
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchtoProps)(TodoList)
+
+//connect says what is needed to be made vaialble to secibnd ()
+//curried - first () returns another function which accpets visibleTodoListy
+

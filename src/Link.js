@@ -2,8 +2,8 @@ import React from 'react'
 
 export default ({active,children,onClick}) => {
 
-  // console.log(active)
-  // console.log(children)
+  //console.log(active)
+  //console.log(children)
   //console.log(onClick)
       //return something else if a condition is matched
       if (active) {
@@ -11,6 +11,8 @@ export default ({active,children,onClick}) => {
       }
     
       return (
-        <button onClick= { e => {e.preventDefault();onClick(); }}> {children} </button>
+        <button disabled={active} onClick={onClick}> {children} </button>
       )
     }
+
+//FilterLink connects it to store and its props

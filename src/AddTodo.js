@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import { ReactReduxContext } from 'react-redux'
+import { connect } from 'react-redux'
 
 
 let nextTodoId = 0
 
-export default class AddTodo extends Component {
+class AddTodo extends Component {
 
 
-    static contextType =  ReactReduxContext;
+
 
     render() {
 
-        const store  = this.context.store
+        const dispatch  = this.props.dispatch
 
         let textInput = React.createRef()
 
@@ -22,7 +22,7 @@ export default class AddTodo extends Component {
                 <input ref={textInput} />
 
                 <button onClick={() => {
-                    store.dispatch({
+                    dispatch({
                         type: 'ADD_TODO',
                         payload: {
                             id: nextTodoId++,
@@ -35,3 +35,9 @@ export default class AddTodo extends Component {
         )
     }
 }
+
+//store.dispatch will be now this.props.dispatch 
+export default connect()(AddTodo)
+
+//it does not need to be connected to store
+//dispatch is make available as props ,if connected

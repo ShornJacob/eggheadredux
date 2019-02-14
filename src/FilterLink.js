@@ -1,42 +1,16 @@
-import React, {Component} from 'react'
 import Link from './Link'
-import { ReactReduxContext } from 'react-redux'
+import { connect } from 'react-redux'
+
+//FilterLink is a container component that provides props and state to Link
+
+const mapStatetoProps = (state, props) => ({ 
+  active: props.filter === state.visibilityFilter 
+})
 
 
-export default class FilterLink extends Component {
+const mapDispatchtoProps = (dispatch, props) => ({
+  onClick: () => dispatch({type: 'SET_VISIBILITY_FILTER', payload: {  filter: props.filter  } })
+})
 
-
-
-      static contextType =  ReactReduxContext;
-
-      componentDidMount() {
-
-        const store = this.context.store
-        this.unsubscribe = store.subscribe( ()=> this.forceUpdate()  )
-      }
-      
-      componentWillUnmount() {
-        this.unsubscribe()
-      }
-
-      
-      render() {
-
-        const props = this.props
-        const store = this.context.store
-        const state = store.getState()
-
-        return (
-          <Link active={props.filter === state.visibilityFilter}
-                 onClick={ ()=> store.dispatch ({
-                   type : 'SET_VISIBILITY_FILTER',
-                   payload : {
-                     filter: props.filter
-                   }
-                   })} >
-                         {props.children}
-          </Link>
-        )
-      }
-    }
-
+//Link will recieve active and onlick values
+export default connect(mapStatetoProps, mapDispatchtoProps)(Link)

@@ -12,6 +12,7 @@ const render = () => {
 
   ReactDOM.render(
     //making store completely injectable as a prop rtaher than a top level variable
+    //Providerpasses th store down via context
       <Provider store={createStore(todoAppReducer)}>
       <TodoApp />
       </Provider>,
