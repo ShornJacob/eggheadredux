@@ -1,4 +1,5 @@
 import Link from './Link'
+import { setVisibilityFilter } from './actions/'
 import { connect } from 'react-redux'
 
 //FilterLink is a container component that provides props and state to Link
@@ -9,7 +10,7 @@ const mapStatetoProps = (state, props) => ({
 
 
 const mapDispatchtoProps = (dispatch, props) => ({
-  onClick: () => dispatch({type: 'SET_VISIBILITY_FILTER', payload: {  filter: props.filter  } })
+  onClick: () => dispatch(setVisibilityFilter(props.filter))
 })
 
 //Link will recieve active and onlick values

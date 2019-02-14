@@ -1,5 +1,7 @@
 import TodoList from './TodoList'
 import { connect } from 'react-redux'
+import { toggleTodo  } from './actions/'
+
 
 //VisibletodoList is a container component for TodoList
 
@@ -25,7 +27,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchtoProps = (dispatch) => {
   return {
-    onTodoClick : (id) => dispatch({type : 'TOGGLE_TODO', payload : { id } })   
+    onTodoClick : (id) => dispatch(toggleTodo (id))   
   }
 }
 

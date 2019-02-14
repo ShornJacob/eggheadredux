@@ -1,4 +1,5 @@
 import {todosReducer} from './index.js'
+import {toggleTodo} from '../actions'
 
 test('testing Todos', ()=> {
     const action = {
@@ -10,13 +11,14 @@ test('testing Todos', ()=> {
     }
 
     const stateAfter = [
+      {id:101,text:"Hello",completed:false},
        {
          id : 101,
          text : 'A text',
          completed : false
        }
     ]
-    expect( todosReducer(undefined,action)).toMatchObject(stateAfter) 
+    expect(todosReducer(undefined,action)).toMatchObject(stateAfter) 
  })
 
 
@@ -30,13 +32,6 @@ test('testing Todos', ()=> {
       }
    ]
 
-   const action = {
-      type : 'TOGGLE_TODO',
-      payload : {
-         id : 101
-      }
-   }
-
    const stateAfter = [
       {
         id : 101,
@@ -44,7 +39,7 @@ test('testing Todos', ()=> {
         completed : true
       }
    ]
-   expect( todosReducer(stateBefore,action)).toMatchObject(stateAfter) 
+   expect( todosReducer(stateBefore,toggleTodo(101))).toMatchObject(stateAfter) 
 
 })
 

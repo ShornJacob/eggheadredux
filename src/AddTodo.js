@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { addTodo } from './actions/'
 
-
-let nextTodoId = 0
 
 class AddTodo extends Component {
-
-
 
 
     render() {
@@ -21,15 +18,7 @@ class AddTodo extends Component {
                
                 <input ref={textInput} />
 
-                <button onClick={() => {
-                    dispatch({
-                        type: 'ADD_TODO',
-                        payload: {
-                            id: nextTodoId++,
-                            text: textInput.current.value
-                        }
-                    })
-                }} > ADD TODO </button>
+                <button onClick={() => dispatch(addTodo(textInput.current.value))} > ADD TODO </button>
             </div>
 
         )
