@@ -5,15 +5,15 @@ import VisibleTodoList from './VisibleTodoList'
 
 
 
-export default () => {
+export default ({match : { params} }) => {
   //  console.log(todos)
-  //  console.log(visibilityFilter)
+   console.log(params.filter)
 
   return (
     <div>
       <AddTodo       />
 
-      <VisibleTodoList       />
+      <VisibleTodoList   filter={params.filter || 'SHOW_ALL'}   />
 
       <Footer        />
 

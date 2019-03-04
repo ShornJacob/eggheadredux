@@ -1,3 +1,4 @@
-Container Components 
-VisibleTodoList for presentational component Todolist
-FilterLink for presentaional component Link
+
+https://redux.js.org/advanced/usage-with-react-router
+
+ routing with your Redux app.
